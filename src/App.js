@@ -1,9 +1,10 @@
 import './App.css';
+import Home from './pages/Home/Home/Home';
 
 function App() {
   return (
     <div className="App">
-      <h2>Last Assignment is Connected</h2>
+      <Home />
     </div>
   );
 }
