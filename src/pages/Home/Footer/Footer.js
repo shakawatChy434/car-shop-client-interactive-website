@@ -14,8 +14,8 @@ import { ButtonBase, Container, Typography } from '@mui/material';
 
 // images
 import footer1 from '../../../images/footer-img/footer1.jfif'
-// import footer2 from '../../../images/footer-img/footer2.jfif'
-import footer3 from '../../../images/footer-img/footer3.jfif'
+import footer2 from '../../../images/footer-img/footer2.jfif'
+// import footer3 from '../../../images/footer-img/footer3.jfif'
 import footer4 from '../../../images/footer-img/footer4.jfif'
 import footer6 from '../../../images/footer-img/footer6.jfif'
 
@@ -40,10 +40,9 @@ const Footer = () => {
                         <Typography style={{ fontSize: '15px', fontWeight: 550, color: 'yellow', }} variant="h6" gutterBottom component="div">
                             MOTORS CARS THEME
                         </Typography>
+
                         <Typography variant="body1" gutterBottom>
-                            <Typography variant="body1" gutterBottom>
-                                Fusce interdum ipsum egestas urna amet fringilla, et placerat ex venenatis. Aliquet luctus pharetra. Proin sed fringilla lectus... ar sit amet tellus in mollis. Proin nec egestas nibh, eget egestas urna. Phasellus sit amet vehicula nunc. In hac habitasse platea dictumst.
-                            </Typography>
+                            Fusce interdum ipsum egestas urna amet fringilla, et placerat ex venenatis. Aliquet luctus pharetra. Proin sed fringilla lectus... ar sit amet tellus in mollis. Proin nec egestas nibh, eget egestas urna. Phasellus sit amet vehicula nunc. In hac habitasse platea dictumst.
                         </Typography>
                         <hr />
                     </Grid>
@@ -58,7 +57,7 @@ const Footer = () => {
                                 <Img alt="complex" src={footer1} />
                             </ButtonBase>
                             <ButtonBase sx={{ width: 90, height: 80 }}>
-                                <Img alt="complex" src={footer3} />
+                                <Img alt="complex" src={footer2} />
                             </ButtonBase>
                             <ButtonBase sx={{ width: 80, height: 80 }}>
                                 <Img alt="complex" src={footer6} />
@@ -67,7 +66,7 @@ const Footer = () => {
                                 <Img alt="complex" src={footer4} />
                             </ButtonBase>
                             <ButtonBase sx={{ width: 90, height: 80 }}>
-                                <Img alt="complex" src={footer3} />
+                                <Img alt="complex" src={footer2} />
                             </ButtonBase>
                             <ButtonBase sx={{ width: 80, height: 80 }}>
                                 <Img alt="complex" src={footer6} />

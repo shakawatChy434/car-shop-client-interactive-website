@@ -8,7 +8,7 @@ import { MdOutlineMarkEmailRead } from 'react-icons/md';
 
 const QuestionArea = () => {
     return (
-        <Box sx={{ flexGrow: 1, bgcolor: 'warning.main', py: 3, }}>
+        <Box sx={{ flexGrow: 1, bgcolor: 'warning.main', py: 7, }}>
             <Container>
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={6} lg={5}>
