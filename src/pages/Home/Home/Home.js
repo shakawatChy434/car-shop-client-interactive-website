@@ -4,12 +4,14 @@ import Footer from '../Footer/Footer';
 import HelpCenter from '../HelpCenter/HelpCenter';
 import OurGoodwill from '../OurGoodwill/OurGoodwill';
 import QuestionArea from '../QuestionArea/QuestionArea';
+import TopBanner from '../TopBanner/TopBanner';
 import WellcomeArea from '../WellcomeArea/WellcomeArea';
 
 const Home = () => {
     return (
         <div>
-            <HelpCenter/>
+            <TopBanner />
+            <HelpCenter />
             <OurGoodwill />
             <ClientReviews />
             <WellcomeArea />

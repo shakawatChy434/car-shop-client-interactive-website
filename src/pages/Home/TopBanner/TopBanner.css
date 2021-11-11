@@ -1,0 +1,11 @@
+.top-bg{
+
+    background-image: url(../../../images/top-banner/topBanner1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: #69626D; */
+    background-color: rgba(19, 5, 26, 0.3);
+    background-blend-mode: overlay;
+    font-family: Arial, Helvetica, sans-serif;
+}
