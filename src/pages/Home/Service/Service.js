@@ -7,13 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { GiSelfLove } from 'react-icons/gi';
 import { Button } from '@mui/material';
-
+import { NavLink } from 'react-router-dom';
 
 
 const Service = (props) => {
-    const { name, price, year, race, type, img } = props.service;
+    const { name, price, year, race, type, img, id } = props.service;
     return (
-
 
         <Card sx={{ maxWidth: 392 }}>
 
@@ -31,13 +30,24 @@ const Service = (props) => {
                     variant="h6"
                     color="text.secondary">
                     {name} <br />
-                    <Button
-                        sx={{ color: 'white', m: 1, py: 1, px: 1, textAlign: 'left', }}
-                        variant="contained">  Price :${price} </Button>
 
-                    <Button
-                        sx={{ color: 'white', m: 1, py: 1, px: 3, textAlign: 'left', }}
-                        variant="contained">Purchase</Button>
+                    <NavLink
+                        style={{ textDecoration: 'none', }}
+                        to={`/booking/${id}/${name}/${img}`}>
+                        <Button
+                            sx={{ color: 'white', m: 1, py: 1, px: 1, textAlign: 'left', }}
+                            variant="contained">  Price :${price} </Button>
+                    </NavLink>
+
+                    <NavLink
+                        style={{ textDecoration: 'none', }}
+                        to={`/booking/${id}/${name}/${img}`}>
+                        <Button
+                            sx={{ color: 'white', m: 1, py: 1, px: 3, textAlign: 'left', }}
+                            variant="contained">Purchase</Button>
+                    </NavLink>
+
+
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     This impressive paella is a perfect party dish and a fun meal to cook

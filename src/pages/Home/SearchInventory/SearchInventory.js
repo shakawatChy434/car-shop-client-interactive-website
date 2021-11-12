@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import { Button, Container, TextField, Typography } from '@mui/material';
 import { BsSearch } from 'react-icons/bs';
 import { AiOutlineCar } from 'react-icons/ai';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -41,11 +42,17 @@ const SearchInventory = () => {
                         />
                     </Grid>
                     <Grid item xs={12} lg={2}>
-                        <Button
-                            sx={{ px: 3, border: 1, fontWeight: 700, }}
-                            variant="outlined">
-                            <BsSearch style={{ marginRight: '20px' }} /> Search
-                        </Button>
+                        <NavLink
+                            style={{ textDecoration: 'none', }}
+                            to="/product">
+                            <Button
+                                sx={{ px: 3, border: 1, fontWeight: 700, }}
+                                variant="outlined">
+                                <BsSearch style={{ marginRight: '20px' }} /> Search
+                            </Button>
+                        </NavLink>
+
+
                     </Grid>
                 </Grid>
             </Container>
