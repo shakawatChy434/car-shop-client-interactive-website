@@ -10,7 +10,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('./services.json')
+        fetch('http://localhost:7000/product')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
@@ -36,8 +36,8 @@ const Products = () => {
                 </Typography>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12, }}>
                     {
-                        products.slice(7, 18).map(product => <Product
-                            key={product.id}
+                        products.map(product => <Product
+                            key={product._id}
                             product={product}
                         ></Product>)
                     }

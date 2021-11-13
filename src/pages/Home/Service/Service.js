@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const Service = (props) => {
-    const { name, price, year, race, type, img, id } = props.service;
+    const { name, price, year, race, type, img, _id,description } = props.service;
     return (
 
         <Card sx={{ maxWidth: 392 }}>
@@ -33,7 +33,7 @@ const Service = (props) => {
 
                     <NavLink
                         style={{ textDecoration: 'none', }}
-                        to={`/booking/${id}/${name}/${img}`}>
+                        to={`/booking/${_id}`}>
                         <Button
                             sx={{ color: 'white', m: 1, py: 1, px: 1, textAlign: 'left', }}
                             variant="contained">  Price :${price} </Button>
@@ -41,7 +41,7 @@ const Service = (props) => {
 
                     <NavLink
                         style={{ textDecoration: 'none', }}
-                        to={`/booking/${id}/${name}/${img}`}>
+                        to={`/booking/${_id}`}>
                         <Button
                             sx={{ color: 'white', m: 1, py: 1, px: 3, textAlign: 'left', }}
                             variant="contained">Purchase</Button>
@@ -50,9 +50,13 @@ const Service = (props) => {
 
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    This impressive paella is a perfect party dish and a fun meal to cook
+                  
+                {description}
+                  
+                  
+                    {/* This impressive paella is a perfect party dish and a fun meal to cook
                     together with your guests. Add 1 cup of frozen peas along with the mussels,
-                    if you like.
+                    if you like. */}
                 </Typography>
             </CardContent>
 

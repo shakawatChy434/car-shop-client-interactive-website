@@ -8,11 +8,10 @@ const Services = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch('./services.json')
+        fetch('http://localhost:7000/product')
             .then(res => res.json())
             .then(data => setServices(data))
     }, [])
-
 
     return (
         <Box sx={{ flexGrow: 1, py: 10 }}>
@@ -35,8 +34,8 @@ const Services = () => {
                 </Typography>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12, }}>
                     {
-                        services.slice(0,6).map(service => <Service
-                            key={service.id}
+                        services.slice(0, 6).map(service => <Service
+                            key={service._id}
                             service={service}
                         ></Service>)
                     }

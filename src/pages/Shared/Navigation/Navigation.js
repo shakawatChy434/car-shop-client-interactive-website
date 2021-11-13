@@ -25,7 +25,7 @@ const Navigation = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        CARS CORNER
+                        UAE-CARS-SHOP
                     </Typography>
                     {/* Create Navigation Link */}
                     <Link to="/home">
@@ -34,15 +34,25 @@ const Navigation = () => {
                     <Link to="/product">
                         <Button style={{ textDecoration: 'none', color: 'white', }} color="inherit">Product</Button>
                     </Link>
-                    
+
+
+
                     {user?.email ? (
-                        <Button onClick={logOut} color="inherit">Logout</Button>
+                        <Box>
+                            <NavLink to="/deshboard">
+                                <Button style={{ textDecoration: 'none', color: 'white', }} color="inherit">Dashboard</Button>
+                            </NavLink>
+                            <Button onClick={logOut} color="inherit">Logout</Button>
+                        </Box>
+
                     ) : (
                         <NavLink to="/login">
                             <Button style={{ textDecoration: 'none', color: 'white', }} color="inherit">Login</Button>
                         </NavLink>
                     )
                     }
+
+
                 </Toolbar>
             </AppBar>
         </Box >

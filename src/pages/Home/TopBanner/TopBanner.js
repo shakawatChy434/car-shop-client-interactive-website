@@ -9,7 +9,7 @@ import { AiOutlineCar } from 'react-icons/ai';
 
 const TopBanner = () => {
     return (
-        <Box className="top-bg" sx={{ flexGrow: 1, py: 45, mb: 4 }}>
+        <Box  className="top-bg" sx={{ flexGrow: 1, py: 45, mb: 4 }}>
             <Container>
                 <Grid container spacing={2} sx={{ my: 0, ms: 'auto', }}>
                     <Grid item xs={12} lg={12}>
