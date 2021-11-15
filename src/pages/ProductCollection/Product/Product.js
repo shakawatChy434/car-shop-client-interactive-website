@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const Product = (props) => {
-    const { name, price, year, race, type, img, description } = props.product;
+    const { name, price, year, race, type, img, description, _id } = props.product;
 
     return (
         <Card sx={{ maxWidth: 392 }}>
@@ -33,6 +33,22 @@ const Product = (props) => {
 
                     <NavLink
                         style={{ textDecoration: 'none', }}
+                        to={`/booking/${_id}`}>
+                        <Button
+                            sx={{ color: 'white', m: 1, py: 1, px: 1, textAlign: 'left', }}
+                            variant="contained">  Price :${price} </Button>
+                    </NavLink>
+
+                    <NavLink
+                        style={{ textDecoration: 'none', }}
+                        to={`/booking/${_id}`}>
+                        <Button
+                            sx={{ color: 'white', m: 1, py: 1, px: 3, textAlign: 'left', }}
+                            variant="contained">Purchase</Button>
+                    </NavLink>
+
+                    {/* <NavLink
+                        style={{ textDecoration: 'none', }}
                         to="/deshboard">
                         <Button
                             sx={{ color: 'white', m: 1, py: 1, px: 1, textAlign: 'left', }}
@@ -45,7 +61,7 @@ const Product = (props) => {
                         <Button
                             sx={{ color: 'white', m: 1, py: 1, px: 3, textAlign: 'left', }}
                             variant="contained">Purchase</Button>
-                    </NavLink>
+                    </NavLink> */}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {description}

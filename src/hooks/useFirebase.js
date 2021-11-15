@@ -21,6 +21,7 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
     const [authError, setAuthError] = useState('');
+    const [admin, setAdmin] = useState(false);
 
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
@@ -35,7 +36,10 @@ const useFirebase = () => {
                 //    First time create user start  (set name)
                 //    Create profile  &  Update profileUser(By ysing Firebase);
                 const newUser = { email, displayName: name };
-                setUser(newUser)
+                setUser(newUser);
+                // save user to the database
+                saveUserToDatabase(email, name, 'POST');
+
                 // Copy from documentation 
                 updateProfile(auth.currentUser, {
                     displayName: name
@@ -57,7 +61,7 @@ const useFirebase = () => {
             // Copy into documentation
             .then((userCredential) => {
                 // Go to redirect page after login
-                const redirectPage = location?.state?.from || '/home';
+                const redirectPage = location?.state?.from || '/';
                 history.replace(redirectPage);
                 setAuthError('');
             })
@@ -72,6 +76,11 @@ const useFirebase = () => {
         signInWithPopup(auth, googleProvider)
             .then((result) => {
                 const user = result.user;
+                saveUserToDatabase(user.email, user.displayName, 'PUT');
+                setAuthError('');
+                // Go to redirect page after login
+                const redirectPage = location?.state?.from || '/';
+                history.replace(redirectPage);
                 setAuthError('');
                 // ...
             }).catch((error) => {
@@ -101,9 +110,29 @@ const useFirebase = () => {
         return () => unsebscribe;
     }, []);
 
+    // UseEffect for Admin
+    useEffect(() => {
+        fetch(`http://localhost:7000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
+
+    // Save User to Database
+    const saveUserToDatabase = (email, displayName, method) => {
+        const user = { email, displayName };
+        fetch('http://localhost:7000/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+    }
 
     return {
         user,
+        admin,         //Use into Admin Part
         registerUser,  //Use into Register part
         logInUser,    //Use into LogIn part
         logOut,      //Use into Nevegation part

@@ -15,15 +15,28 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
-import Products from '../../ProductCollection/Products/Products';
-import Bookings from '../Bookings/Bookings';
+import {
+    Switch,
+    Route,
+    Link,
+    useRouteMatch
+} from "react-router-dom";
+import Button from '@restart/ui/esm/Button';
+import DashboardHome from '../DashboardHome/DashboardHome';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddUser from '../AddUser/AddUser';
+import useAuth from '../../../hooks/useAuth';
+
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    // For Nasted Router
+    let { path, url } = useRouteMatch();
+    // Use For useFriebase
+    const { admin } = useAuth();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -33,6 +46,33 @@ function Dashboard(props) {
         <div>
             <Toolbar />
             <Divider />
+            <Link to={`${url}`}><Button style={{
+                textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '15px', fontWeight: 'bold',
+            }} color="inherit">Dashboard</Button>
+            </Link><br />
+
+            <Link to="/product"><Button style={{
+                textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '15px', fontWeight: 'bold',
+            }} color="inherit">Add Service</Button>
+            </Link> <br />
+
+            {/* if Admin identify then show their */}
+            {admin && <Box>
+                <Link to={`${url}/makeAdmin`}><Button style={{
+                    textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '15px', fontWeight: 'bold',
+                }} color="inherit">Make Admin</Button>
+                </Link><br />
+
+                <Link to={`${url}/addUser`}><Button style={{
+                    textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '15px', fontWeight: 'bold',
+                }} color="inherit">Add User</Button>
+                </Link><br />
+            </Box>}
+
+
+
+
+
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
@@ -112,16 +152,18 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Typography paragraph>
-                    <Grid container spacing={2}>
-                        <Grid item xs={8}>
-                            <Products />
-                        </Grid>
-                        <Grid item xs={4}>
-                            <Bookings />
-                        </Grid>
-                    </Grid>
-                </Typography>
+
+                <Switch>
+                    <Route exact path={path}>
+                        <DashboardHome />
+                    </Route>
+                    <Route path={`${path}/makeAdmin`}>
+                        <MakeAdmin />
+                    </Route>
+                    <Route path={`${path}/addUser`}>
+                        <AddUser />
+                    </Route>
+                </Switch>
             </Box>
         </Box>
     );
