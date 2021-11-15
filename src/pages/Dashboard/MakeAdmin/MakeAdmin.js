@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Alert, Button } from '@mui/material';
+import useAuth from '../../../hooks/useAuth';
 
 
 const MakeAdmin = () => {
     const [email, setEmail] = useState('');
     const [adminSuccess, setAdminSuccess] = useState(false);
+    const { jwtToke } = useAuth();
 
     const handleonBlur = (e) => {
         setEmail(e.target.value);
@@ -15,6 +17,7 @@ const MakeAdmin = () => {
         fetch('http://localhost:7000/users/admin', {
             method: 'PUT',
             headers: {
+                'authorization': `Bearer ${jwtToke}`,
                 'content-type': 'application/json'
             },
             body: JSON.stringify(user)
@@ -23,7 +26,6 @@ const MakeAdmin = () => {
             .then(data => {
                 if (data.modifiedCount) {
                     console.log(data);
-                    
                     setAdminSuccess(true);
                 }
             })

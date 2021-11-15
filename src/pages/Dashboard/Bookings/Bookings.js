@@ -36,7 +36,7 @@ const Bookings = () => {
                             <TableCell align="right">Type</TableCell>
                             <TableCell align="right">Race</TableCell>
                             <TableCell align="right">Price</TableCell>
-                            <TableCell align="right">Pay</TableCell>
+                            <TableCell align="right">Order</TableCell>
                             <TableCell align="right">Review</TableCell>
                         </TableRow>
                     </TableHead>

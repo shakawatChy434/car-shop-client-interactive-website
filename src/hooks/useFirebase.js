@@ -11,6 +11,7 @@ import {
     signInWithPopup,
     GoogleAuthProvider,
     updateProfile,
+    getIdToken,
 } from "firebase/auth";
 
 
@@ -22,6 +23,8 @@ const useFirebase = () => {
     const [loading, setLoading] = useState(true);
     const [authError, setAuthError] = useState('');
     const [admin, setAdmin] = useState(false);
+    // reserve jwt token
+    const [jwtToke, setJwtToken] = useState('');
 
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
@@ -101,7 +104,12 @@ const useFirebase = () => {
     useEffect(() => {
         const unsebscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setUser(user)
+                setUser(user);
+                // get jwt token
+                getIdToken(user)
+                    .then(idToken => {
+                        setJwtToken(idToken);
+                    })
             } else {
                 setUser({})
             }
@@ -133,6 +141,7 @@ const useFirebase = () => {
     return {
         user,
         admin,         //Use into Admin Part
+        jwtToke,       //Use for anyOther location 
         registerUser,  //Use into Register part
         logInUser,    //Use into LogIn part
         logOut,      //Use into Nevegation part
