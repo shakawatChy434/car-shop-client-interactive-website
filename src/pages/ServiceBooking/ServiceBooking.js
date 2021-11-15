@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { Button } from '@mui/material';
 import useAuth from '../../hooks/useAuth';
+import './ServiceBooking.css'
 
 const ServiceBooking = () => {
     const { id } = useParams();
@@ -65,15 +66,15 @@ const ServiceBooking = () => {
                 </Col>
                 <Col>
                     <form className="shop py-3 " onSubmit={handleSubmit}>
-                        <input disabled defaultValue={user.displayName} ref={nameRef} />
-                        <input disabled defaultValue={user.email} ref={emailRef} />
-                        <input disabled defaultValue={product.name} ref={productNameRef} />
-                        <input disabled defaultValue={product.price} ref={priceRef} />
-                        <input type="text" ref={locationRef} />
+                        <input disabled defaultValue={user.displayName} ref={nameRef} /> <br /> <br />
+                        <input disabled defaultValue={user.email} ref={emailRef} /><br /> <br />
+                        <input disabled defaultValue={product.name} ref={productNameRef} /> <br /> <br />
+                        <input disabled defaultValue={product.price} ref={priceRef} /> <br /> <br />
+                        <input type="text" ref={locationRef} placeholder="Location" /> <br />  <br />
                         <select className="form-select" ref={shippingRef} id="inputGroupSelect01">
                             <option value="5%/7D">Shipping 5%/7D</option>
                             <option value="10%/3D">Shipping  10%/3D</option>
-                        </select>
+                        </select> <br /><br /> <br />
                         <Button className="mt-5" type="submit" variant="contained"><i className="fas fa-shopping-basket"></i> Place Order</Button>
                     </form>
                 </Col>

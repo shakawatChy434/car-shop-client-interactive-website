@@ -6,12 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -24,9 +18,15 @@ import {
 import Button from '@restart/ui/esm/Button';
 import DashboardHome from '../DashboardHome/DashboardHome';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
-import AddUser from '../AddUser/AddUser';
 import useAuth from '../../../hooks/useAuth';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
+import Payment from '../Payment/Payment';
+import ManageAllOreder from '../ManageAllOreder/ManageAllOreder';
+import AddService from '../../AddService/AddService';
+import ManageProduct from '../ManageProduct/ManageProduct';
+import MyOrder from '../MyOrder/MyOrder';
+import Review from '../Review/Review';
+import UserRoute from '../../Login/UserRoute/UserRoute';
 
 
 const drawerWidth = 200;
@@ -37,55 +37,77 @@ function Dashboard(props) {
     // For Nasted Router
     let { path, url } = useRouteMatch();
     // Use For useFriebase
-    const { admin } = useAuth();
+    const { admin, logOut } = useAuth();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
     const drawer = (
-        <div>
+        <div >
             <Toolbar />
             <Divider />
-            <Link to={`${url}`}><Button style={{
-                textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '15px', fontWeight: 'bold',
-            }} color="inherit">Dashboard</Button>
+            <Link to="/"><Button style={{
+                textDecoration: 'none', color: 'blue', marginTop: '20px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+            }} color="inherit">Home</Button>
             </Link><br />
-
-            <Link to="/product"><Button style={{
-                textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '15px', fontWeight: 'bold',
-            }} color="inherit">Add Service</Button>
-            </Link> <br />
-
             {/* if Admin identify then show their */}
-            {admin && <Box>
-                <Link to={`${url}/makeAdmin`}><Button style={{
-                    textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '15px', fontWeight: 'bold',
-                }} color="inherit">Make Admin</Button>
+            {
+                admin ?
+                    <Box>
+                        <Link to={`${url}/manageAllOrder`}><Button style={{
+                            textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+                        }} color="inherit">Manage All Order</Button>
+                        </Link><br />
+
+                        <Link to={`${url}/addservice`}><Button style={{
+                            textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+                        }} color="inherit">Add Service</Button>
+                        </Link><br />
+
+                        <Link to={`${url}/makeAdmin`}><Button style={{
+                            textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+                        }} color="inherit">Make Admin</Button>
+                        </Link><br />
+
+                        <Link to={`${url}/manageProduct`}><Button style={{
+                            textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+                        }} color="inherit">Manage Product</Button>
+                        </Link><br />
+
+                    </Box>
+                    :
+                    <Box>
+                        {/* User Panal */}
+
+                        <Link to={`${url}/myOrder`}><Button style={{
+                            textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+                        }} color="inherit">My Order</Button>
+                        </Link> <br />
+                        <Link to={`${url}/payment`}><Button style={{
+                            textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+                        }} color="inherit">Pay</Button>
+                        </Link> <br />
+                        <Link to={`${url}/review`}><Button style={{
+                            textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+                        }} color="inherit">Review</Button>
+                        </Link> <br />
+                    </Box>
+            }
+            <Box>
+                <Link to="">
+                    <Button
+                        style={{
+                            textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '20px', fontWeight: 'bold',
+                        }}
+                        color="inherit"
+                        onClick={logOut}>
+                        Logout
+                    </Button>
                 </Link><br />
 
-                <Link to={`${url}/addUser`}><Button style={{
-                    textDecoration: 'none', color: 'blue', marginTop: '10px', textAlign: 'left', border: 0, fontSize: '15px', fontWeight: 'bold',
-                }} color="inherit">Add User</Button>
-                </Link><br />
-            </Box>}
-
-
-
-
-
-            <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+            </Box>
             <Divider />
-
         </div>
     );
 
@@ -161,9 +183,24 @@ function Dashboard(props) {
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
                     </AdminRoute>
-                    <AdminRoute path={`${path}/addUser`}>
-                        <AddUser />
+                    <AdminRoute path={`${path}/manageAllOrder`}>
+                        <ManageAllOreder />
                     </AdminRoute>
+                    <AdminRoute path={`${path}/addservice`}>
+                        <AddService />
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/manageProduct`}>
+                        <ManageProduct />
+                    </AdminRoute>
+                    <UserRoute exact path={`${path}/payment`}>
+                        <Payment />
+                    </UserRoute>
+                    <UserRoute exact path={`${path}/myOrder`}>
+                        <MyOrder />
+                    </UserRoute>
+                    <UserRoute exact path={`${path}/review`}>
+                        <Review />
+                    </UserRoute>
                 </Switch>
             </Box>
         </Box>
