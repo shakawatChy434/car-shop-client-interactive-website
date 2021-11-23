@@ -12,7 +12,7 @@ const ServiceBooking = () => {
     const [product, setProduct] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:7000/product/${id}`
+        const url = `https://boiling-reaches-79167.herokuapp.com/product/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data))
@@ -35,7 +35,7 @@ const ServiceBooking = () => {
         const shipping = shippingRef.current.value;
         const addNewInfo = { name, email, productName, price, locationName, shipping };
 
-        fetch("http://localhost:7000/order", {
+        fetch("https://boiling-reaches-79167.herokuapp.com/order", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -7,7 +7,7 @@ const AddService = () => {
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = data => {
-        axios.post('http://localhost:7000/product', data)
+        axios.post('https://boiling-reaches-79167.herokuapp.com/product', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert("Add Product");
@@ -17,7 +17,7 @@ const AddService = () => {
 
 
 
-        // fetch('http://localhost:7000/products', {
+        // fetch('https://boiling-reaches-79167.herokuapp.com/products', {
         //     method: "POST",
         //     headers: {
         //         'content-type': 'application/json'

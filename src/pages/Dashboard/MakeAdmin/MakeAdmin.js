@@ -14,7 +14,7 @@ const MakeAdmin = () => {
     }
     const handleMakeAdmin = (e) => {
         const user = { email };
-        fetch('http://localhost:7000/users/admin', {
+        fetch('https://boiling-reaches-79167.herokuapp.com/users/admin', {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${jwtToke}`,

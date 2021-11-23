@@ -15,13 +15,13 @@ const ManageAllOreder = () => {
     const [managAllOrder, setManagAllOrder] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:7000/order')
+        fetch('https://boiling-reaches-79167.herokuapp.com/order')
             .then(res => res.json())
             .then(data => setManagAllOrder(data))
     }, [])
     // Delete handler
     const handlerDeleteOrder = (id) => {
-        const url = `http://localhost:7000/order/${id}`
+        const url = `https://boiling-reaches-79167.herokuapp.com/order/${id}`
         fetch(url, {
             method: 'DELETE',
         })
@@ -44,7 +44,7 @@ const ManageAllOreder = () => {
                         <TableRow>
                             <TableCell>Name</TableCell>
                             <TableCell align="right">Product Name</TableCell>
-                            <TableCell align="right">Price</TableCell>
+                            <TableCell align="right">Price ($)</TableCell>
                             <TableCell align="right">Shipping</TableCell>
                             <TableCell align="right">Action</TableCell>
                         </TableRow>
